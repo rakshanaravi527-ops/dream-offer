@@ -1,3 +1,4 @@
 Deletion in Arrays
 Deletion is the process of removing an element from a data structure.
+In an array, deletion means removing an element from a specific position and then shifting the remaining elements to the left to fill the empty space.
 
