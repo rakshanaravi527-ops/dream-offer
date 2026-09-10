@@ -4,3 +4,4 @@ In an array, deletion means removing an element from a specific position and the
 Arrays store elements in contiguous (continuous) memory locations.
 Types of Deletion
 1. Deletion from the Beginning
+2. Deletion from the End
