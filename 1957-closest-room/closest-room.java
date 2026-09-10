@@ -1,0 +1,59 @@
+import java.util.*;
+
+class Solution {
+    public int[] closestRoom(int[][] rooms, int[][] queries) {
+
+        Arrays.sort(rooms, (a, b) -> b[1] - a[1]);
+
+        int m = queries.length;
+
+        int[][] q = new int[m][3];
+
+        for (int i = 0; i < m; i++) {
+            q[i][0] = queries[i][0];
+            q[i][1] = queries[i][1]; 
+            q[i][2] = i;             
+        }
+
+        Arrays.sort(q, (a, b) -> b[1] - a[1]);
+
+        TreeSet<Integer> set = new TreeSet<>();
+
+        int[] ans = new int[m];
+
+        int j = 0;
+
+        for (int i = 0; i < m; i++) {
+
+            int preferred = q[i][0];
+            int minSize = q[i][1];
+            int idx = q[i][2];
+
+            while (j < rooms.length && rooms[j][1] >= minSize) {
+                set.add(rooms[j][0]);
+                j++;
+            }
+
+            if (set.isEmpty()) {
+                ans[idx] = -1;
+                continue;
+            }
+
+            Integer floor = set.floor(preferred);
+            Integer ceil = set.ceiling(preferred);
+
+            if (floor == null) {
+                ans[idx] = ceil;
+            } else if (ceil == null) {
+                ans[idx] = floor;
+            } else {
+                if (preferred - floor <= ceil - preferred)
+                    ans[idx] = floor;
+                else
+                    ans[idx] = ceil;
+            }
+        }
+
+        return ans;
+    }
+}
