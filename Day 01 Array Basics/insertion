@@ -1,2 +1,2 @@
 Insertion means adding a new element into a data structure at a specific position.
-
+For arrays, insertion means placing a new element at a desired index and shifting the existing elements to the right to make space.
