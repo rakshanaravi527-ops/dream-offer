@@ -6,3 +6,4 @@ We traverse arrays to perform operations such as:
 
 Finding the maximum or minimum element
 Calculating the sum
+Counting occurrences of a value
