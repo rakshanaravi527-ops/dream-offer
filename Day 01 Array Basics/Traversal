@@ -1,1 +1,4 @@
+Traversal
+Traversal means visiting every element of a data structure one by one.
+For an array, traversal means starting from the first element and moving to the last element.
 
