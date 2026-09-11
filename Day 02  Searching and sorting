@@ -12,3 +12,4 @@ Common methods include bubble sort, selection sort, insertion sort, merge sort, 
 Common Sorting Algorithms
 Bubble Sort – repeatedly compares and swaps adjacent elements.
 Selection Sort – repeatedly selects the smallest/largest element.
+Insertion Sort – inserts each element into its correct position.
