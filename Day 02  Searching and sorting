@@ -11,3 +11,4 @@ Example: [8, 3, 5, 1] sorted in ascending order becomes [1, 3, 5, 8].
 Common methods include bubble sort, selection sort, insertion sort, merge sort, and quick sort.
 Common Sorting Algorithms
 Bubble Sort – repeatedly compares and swaps adjacent elements.
+Selection Sort – repeatedly selects the smallest/largest element.
