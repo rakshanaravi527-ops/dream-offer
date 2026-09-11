@@ -4,3 +4,5 @@ Example: Finding the number 7 in [2, 5, 7, 10].
 There are two important searching techniques:
 Linear Search – checks elements one by one.
 Binary Search – repeatedly divides the search area into half.
+
+Sorting 
