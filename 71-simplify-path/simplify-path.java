@@ -13,7 +13,7 @@ class Solution {
                 continue;
             }
 
-            else if (part.equals("..")) {
+            if (part.equals("..")) {
                 if (!stack.isEmpty()) {
                     stack.pop();
                 }
