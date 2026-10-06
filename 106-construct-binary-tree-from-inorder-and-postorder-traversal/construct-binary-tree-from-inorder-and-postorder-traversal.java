@@ -1,47 +1,40 @@
-import java.util.HashMap;
+import java.util.*;
 
 class Solution {
 
-    private int postorderIndex;
-        private HashMap<Integer, Integer> inorderMap;
+    HashMap<Integer, Integer> map;
+    int postIndex;
 
-            public TreeNode buildTree(int[] inorder, int[] postorder) {
+    public TreeNode buildTree(int[] inorder, int[] postorder) {
 
-                    inorderMap = new HashMap<>();
+        map = new HashMap<>();
 
-                            // Store inorder value -> index
-                                    for (int i = 0; i < inorder.length; i++) {
-                                                inorderMap.put(inorder[i], i);
-                                                        }
+        for (int i = 0; i < inorder.length; i++) {
+            map.put(inorder[i], i);
+        }
 
-                                                                // Start from the last element of postorder
-                                                                        postorderIndex = postorder.length - 1;
+        postIndex = postorder.length - 1;
 
-                                                                                return build(postorder, 0, inorder.length - 1);
-                                                                                    }
+        return build(inorder, postorder, 0, inorder.length - 1);
+    }
 
-                                                                                        private TreeNode build(int[] postorder, int left, int right) {
+    private TreeNode build(int[] inorder, int[] postorder,
+                           int left, int right) {
 
-                                                                                                // Base case
-                                                                                                        if (left > right) {
-                                                                                                                    return null;
-                                                                                                                            }
+        if (left > right) {
+            return null;
+        }
 
-                                                                                                                                    // Last element of postorder is the root
-                                                                                                                                            int rootValue = postorder[postorderIndex--];
+        int rootValue = postorder[postIndex--];
 
-                                                                                                                                                    TreeNode root = new TreeNode(rootValue);
+        TreeNode root = new TreeNode(rootValue);
 
-                                                                                                                                                            // Find root in inorder
-                                                                                                                                                                    int rootIndex = inorderMap.get(rootValue);
+        int index = map.get(rootValue);
 
-                                                                                                                                                                            // IMPORTANT:
-                                                                                                                                                                                    // Build right subtree first
-                                                                                                                                                                                            root.right = build(postorder, rootIndex + 1, right);
+        root.right = build(inorder, postorder, index + 1, right);
 
-                                                                                                                                                                                                    // Then build left subtree
-                                                                                                                                                                                                            root.left = build(postorder, left, rootIndex - 1);
+        root.left = build(inorder, postorder, left, index - 1);
 
-                                                                                                                                                                                                                    return root;
-                                                                                                                                                                                                                        }
-                                                                                                                                                                                                                        }
+        return root;
+    }
+}
