@@ -1,46 +1,47 @@
 class Solution {
-        public TreeNode deleteNode(TreeNode root, int key) {
+    public TreeNode deleteNode(TreeNode root, int key) {
 
-                // Node not found
-                        if (root == null) {
-                                    return null;
-                                            }
+        if (root == null) {
+            return null;
+        }
 
-                                                    // Search left
-                                                            if (key < root.val) {
-                                                                        root.left = deleteNode(root.left, key);
-                                                                                }
+        // Search for the node
+        if (key < root.val) {
+            root.left = deleteNode(root.left, key);
+        }
+        else if (key > root.val) {
+            root.right = deleteNode(root.right, key);
+        }
+        else {
+            // Node found
 
-                                                                                        // Search right
-                                                                                                else if (key > root.val) {
-                                                                                                            root.right = deleteNode(root.right, key);
-                                                                                                                    }
+            // Case 1: No left child
+            if (root.left == null) {
+                return root.right;
+            }
 
-                                                                                                                            // Node found
-                                                                                                                                    else {
+            // Case 2: No right child
+            if (root.right == null) {
+                return root.left;
+            }
 
-                                                                                                                                                // Case 1: No left child
-                                                                                                                                                            if (root.left == null) {
-                                                                                                                                                                            return root.right;
-                                                                                                                                                                                        }
+            // Case 3: Both children exist
+            TreeNode successor = findMin(root.right);
 
-                                                                                                                                                                                                    // Case 2: No right child
-                                                                                                                                                                                                                if (root.right == null) {
-                                                                                                                                                                                                                                return root.left;
-                                                                                                                                                                                                                                            }
+            root.val = successor.val;
 
-                                                                                                                                                                                                                                                        // Case 3: Two children
-                                                                                                                                                                                                                                                                    TreeNode successor = root.right;
+            root.right = deleteNode(root.right, successor.val);
+        }
 
-                                                                                                                                                                                                                                                                                while (successor.left != null) {
-                                                                                                                                                                                                                                                                                                successor = successor.left;
-                                                                                                                                                                                                                                                                                                            }
+        return root;
+    }
 
-                                                                                                                                                                                                                                                                                                                        root.val = successor.val;
+    private TreeNode findMin(TreeNode root) {
 
-                                                                                                                                                                                                                                                                                                                                    root.right = deleteNode(root.right, successor.val);
-                                                                                                                                                                                                                                                                                                                                            }
+        while (root.left != null) {
+            root = root.left;
+        }
 
-                                                                                                                                                                                                                                                                                                                                                    return root;
-                                                                                                                                                                                                                                                                                                                                                        }
-                                                                                                                                                                                                                                                                                                                                                        }
+        return root;
+    }
+}
