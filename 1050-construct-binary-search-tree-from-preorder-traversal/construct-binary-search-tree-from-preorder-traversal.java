@@ -1,28 +1,25 @@
 class Solution {
 
-        int index = 0;
+    int index = 0;
 
-            public TreeNode bstFromPreorder(int[] preorder) {
-                    return build(preorder, Integer.MAX_VALUE);
-                        }
+    public TreeNode bstFromPreorder(int[] preorder) {
+        return build(preorder, Integer.MAX_VALUE);
+    }
 
-                            private TreeNode build(int[] preorder, int upperBound) {
+    private TreeNode build(int[] preorder, int bound) {
 
-                                    // No more nodes or value doesn't belong in this subtree
-                                            if (index == preorder.length || preorder[index] > upperBound) {
-                                                        return null;
-                                                                }
+        if (index == preorder.length || preorder[index] > bound) {
+            return null;
+        }
 
-                                                                        // Create current node
-                                                                                TreeNode root = new TreeNode(preorder[index]);
-                                                                                        index++;
+        int value = preorder[index++];
 
-                                                                                                // Build left subtree
-                                                                                                        root.left = build(preorder, root.val);
+        TreeNode root = new TreeNode(value);
 
-                                                                                                                // Build right subtree
-                                                                                                                        root.right = build(preorder, upperBound);
+        root.left = build(preorder, value);
 
-                                                                                                                                return root;
-                                                                                                                                    }
-                                                                                                                                    }
+        root.right = build(preorder, bound);
+
+        return root;
+    }
+}
