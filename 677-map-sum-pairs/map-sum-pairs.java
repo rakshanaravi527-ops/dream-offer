@@ -8,7 +8,7 @@ class MapSum {
     }
 
     private TrieNode root;
-    private Map<String, Integer> map;
+    private HashMap<String, Integer> map;
 
     public MapSum() {
         root = new TrieNode();
