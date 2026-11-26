@@ -1,29 +1,24 @@
-import java.util.*;
+
+import java.util.Arrays;
 
 class Solution {
     public void wiggleSort(int[] nums) {
+        int n = nums.length;
 
-            int n = nums.length;
+        int[] sorted = nums.clone();
+        Arrays.sort(sorted);
 
-                    // Make a copy and sort it
-                            int[] sorted = nums.clone();
-                                    Arrays.sort(sorted);
+        int mid = (n + 1) / 2;
 
-                                            // Middle of the array
-                                                    int mid = (n - 1) / 2;
+        int left = mid - 1;
+        int right = n - 1;
 
-                                                            // Last element of the array
-                                                                    int high = n - 1;
-
-                                                                            // Fill odd indices with larger elements
-                                                                                    // Fill even indices with smaller elements
-                                                                                            for (int i = 0; i < n; i++) {
-
-                                                                                                        if (i % 2 == 0) {
-                                                                                                                        nums[i] = sorted[mid--];
-                                                                                                                                    } else {
-                                                                                                                                                    nums[i] = sorted[high--];
-                                                                                                                                                                }
-                                                                                                                                                                        }
-                                                                                                                                                                            }
-                                                                                                                                                                            }
+        for (int i = 0; i < n; i++) {
+            if (i % 2 == 0) {
+                nums[i] = sorted[left--];
+            } else {
+                nums[i] = sorted[right--];
+            }
+        }
+    }
+}
